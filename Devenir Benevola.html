@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parrainer un Enfant - Enfants d'Espoir</title>
+    <title>Devenir Bénévole - Jhad</title>
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -167,7 +167,7 @@
         }
 
         /* Hero Section */
-        .parrainer-hero {
+        .benevole-hero {
             position: relative;
             height: 450px;
             display: flex;
@@ -176,14 +176,14 @@
             text-align: center;
             color: #fff;
             overflow: hidden;
-            background: url('images/parrainer-hero.jpg') no-repeat center center/cover;
+            background: url('images/benevole-hero.jpg') no-repeat center center/cover;
             animation: zoomInOut 20s infinite alternate;
         }
         @keyframes zoomInOut {
             0% { transform: scale(1); }
             100% { transform: scale(1.05); }
         }
-        .parrainer-hero::before {
+        .benevole-hero::before {
             content: '';
             position: absolute;
             top: 0;
@@ -193,30 +193,30 @@
             background: rgba(0, 0, 0, 0.5);
             z-index: 1;
         }
-        .parrainer-hero-content {
+        .benevole-hero-content {
             position: relative;
             z-index: 2;
             max-width: 800px;
             padding: 0 1rem;
             animation: fadeIn 1.5s ease-out;
         }
-        .parrainer-hero-content h1 {
+        .benevole-hero-content h1 {
             font-size: 3rem;
             margin-bottom: 1rem;
             color: #fff;
         }
-        .parrainer-hero-content p {
+        .benevole-hero-content p {
             font-size: 1.2rem;
             color: var(--light-text);
         }
 
-        /* What is Sponsorship Section */
-        #what-is-sponsorship {
+        /* Why Volunteer Section */
+        #why-volunteer {
             padding: 4rem 0;
             background-color: var(--card-bg);
             text-align: center;
         }
-        #what-is-sponsorship p {
+        #why-volunteer p {
             max-width: 800px;
             margin: 0 auto 2rem;
             font-size: 1.1rem;
@@ -253,126 +253,47 @@
             color: var(--dark-text);
         }
 
-        /* Children Profiles Section */
-        #children-profiles {
+        /* Roles Section */
+        #roles {
             padding: 4rem 0;
             background-color: var(--light-bg);
             text-align: center;
         }
-        #children-profiles p.intro {
-            max-width: 800px;
-            margin: 0 auto 2rem;
+        .roles-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .role-tag {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
             font-size: 1.1rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
-        .profiles-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        .profile-card {
-            background-color: var(--card-bg);
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            overflow: hidden;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .profile-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-        }
-        .profile-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            object-position: top center;
-        }
-        .profile-card-content {
-            padding: 1.5rem;
-        }
-        .profile-card-content h3 {
-            font-size: 1.6rem;
-            margin-top: 0;
-            margin-bottom: 0.5rem;
-            color: var(--primary-color);
-        }
-        .profile-card-content p {
-            font-size: 0.95rem;
-            color: var(--dark-text);
-            margin-bottom: 1rem;
-        }
-        .profile-card-content .btn {
-            padding: 0.6rem 1.2rem;
-            font-size: 0.9rem;
-        }
-
-        /* Coverage Section */
-        #coverage {
-            padding: 4rem 0;
-            background-color: var(--dark-bg);
-            color: var(--light-text);
-            text-align: center;
-        }
-        #coverage .section-heading {
-            color: var(--light-text);
-        }
-        #coverage .section-heading::after {
+        .role-tag:hover {
             background-color: var(--secondary-color);
-        }
-        .coverage-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        .coverage-item {
-            background-color: var(--dark-text);
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
-        }
-        .coverage-item:hover {
-            transform: translateY(-8px);
-        }
-        .coverage-item .icon {
-            font-size: 3.5rem;
-            color: var(--secondary-color);
-            margin-bottom: 1rem;
-            animation: float 3s infinite ease-in-out;
-        }
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-        .coverage-item h3 {
-            font-size: 1.6rem;
-            color: var(--light-text);
-            margin-bottom: 0.8rem;
-        }
-        .coverage-item p {
-            font-size: 0.95rem;
-            color: #ccc;
-        }
-        .sponsorship-amount {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--secondary-color);
-            margin-top: 2rem;
-            animation: popIn 1s ease-out;
-        }
-        @keyframes popIn {
-            from { opacity: 0; transform: scale(0.8); }
-            to { opacity: 1; transform: scale(1); }
+            transform: translateY(-3px);
         }
 
         /* Process Section */
         #process {
             padding: 4rem 0;
-            background-color: var(--card-bg);
+            background-color: var(--dark-bg);
+            color: var(--light-text);
             text-align: center;
+        }
+        #process .section-heading {
+            color: var(--light-text);
+        }
+        #process .section-heading::after {
+            background-color: var(--secondary-color);
         }
         .process-steps {
             display: flex;
@@ -382,64 +303,65 @@
             margin-top: 3rem;
         }
         .step-item {
-            background-color: var(--light-bg);
+            background-color: var(--dark-text);
             padding: 2rem;
             border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             width: 250px;
             text-align: center;
             position: relative;
-            transition: transform 0.3s ease;
+            transform: translateY(0);
+            transition: transform 0.5s ease-out;
         }
-        .step-item:hover {
-            transform: translateY(-8px);
+        .step-item:nth-child(even) {
+            transform: translateY(-10px);
         }
         .step-item .step-number {
             font-size: 3rem;
             font-weight: 700;
-            color: var(--primary-color);
+            color: var(--secondary-color);
             margin-bottom: 1rem;
             display: block;
             line-height: 1;
         }
         .step-item h3 {
             font-size: 1.6rem;
-            color: var(--dark-bg);
+            color: var(--light-text);
             margin-bottom: 0.8rem;
         }
         .step-item p {
             font-size: 0.95rem;
-            color: var(--dark-text);
+            color: #ccc;
         }
 
-        /* Sponsorship Form Section */
-        #sponsorship-form-section {
+        /* Volunteer Form Section */
+        #volunteer-form-section {
             padding: 4rem 0;
-            background-color: var(--light-bg);
+            background-color: var(--card-bg);
         }
-        #sponsorship-form-section h2 {
+        #volunteer-form-section h2 {
             text-align: center;
         }
-        #sponsorship-form-section form {
+        #volunteer-form-section form {
             max-width: 700px;
             margin: 0 auto;
             display: flex;
             flex-direction: column;
             gap: 1rem;
-            background-color: var(--card-bg);
+            background-color: var(--light-bg);
             padding: 2.5rem;
             border-radius: 10px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
-        #sponsorship-form-section form label {
+        #volunteer-form-section form label {
             font-weight: 600;
             color: var(--dark-text);
         }
-        #sponsorship-form-section form input[type="text"],
-        #sponsorship-form-section form input[type="email"],
-        #sponsorship-form-section form input[type="tel"],
-        #sponsorship-form-section form textarea,
-        #sponsorship-form-section form select {
+        #volunteer-form-section form input[type="text"],
+        #volunteer-form-section form input[type="email"],
+        #volunteer-form-section form input[type="tel"],
+        #volunteer-form-section form textarea,
+        #volunteer-form-section form select {
             padding: 1rem;
             border: 1px solid #ddd;
             border-radius: 5px;
@@ -447,23 +369,57 @@
             width: 100%;
             box-sizing: border-box;
         }
-        #sponsorship-form-section form textarea {
+        #volunteer-form-section form textarea {
             resize: vertical;
             min-height: 80px;
         }
-        #sponsorship-form-section form .checkbox-group {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 0.5rem;
-        }
-        #sponsorship-form-section form .checkbox-group input {
-            width: auto;
-        }
-        #sponsorship-form-section form .btn {
+        #volunteer-form-section form .btn {
             align-self: center;
             margin-top: 1.5rem;
             width: fit-content;
+        }
+
+        /* Testimonials Section */
+        #volunteer-testimonials {
+            padding: 4rem 0;
+            background-color: var(--light-bg);
+        }
+        .testimonial-slider {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            gap: 2rem;
+            padding-bottom: 1rem;
+        }
+        .testimonial-item {
+            flex: 0 0 450px;
+            scroll-snap-align: start;
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .testimonial-item img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        .testimonial-item p {
+            font-style: italic;
+            margin-bottom: 1rem;
+            color: var(--dark-text);
+        }
+        .testimonial-item span {
+            font-weight: 600;
+            color: var(--primary-color);
         }
 
         /* Footer */
@@ -568,6 +524,7 @@
 
             .nav-links li {
                 margin: 1rem 0;
+                text-align: center;
             }
 
             .nav-links a.btn {
@@ -579,17 +536,31 @@
                 display: block;
             }
 
-            .parrainer-hero-content h1 {
+            .benevole-hero-content h1 {
                 font-size: 2.2rem;
             }
-            .parrainer-hero-content p {
+            .benevole-hero-content p {
                 font-size: 1rem;
             }
             .section-heading {
                 font-size: 2rem;
             }
-            .benefits-grid, .profiles-grid, .coverage-grid, .process-steps {
+            .benefits-grid, .process-steps {
                 grid-template-columns: 1fr;
+            }
+            .step-item:nth-child(even) {
+                transform: translateY(0);
+            }
+            .roles-list {
+                flex-direction: column;
+                align-items: center;
+            }
+            .role-tag {
+                width: 80%;
+                max-width: 300px;
+            }
+            .testimonial-item {
+                flex: 0 0 90%;
             }
             .footer-content {
                 flex-direction: column;
@@ -607,7 +578,7 @@
     <header class="header">
         <nav class="navbar container">
             <a href="index.html" class="logo">
-                <img src="./JHAD .jpg" alt="Logo jhad">
+                <img src="./JHAD .jpg" alt="Logo Jhad">
                 Jhad
             </a>
             
@@ -619,178 +590,143 @@
                 <li><a href="index.html#about">À Propos</a></li>
                 <li><a href="index.html#actions">Nos Actions</a></li>
                 <li><a href="Don.html">Faire un Don</a></li>
-                <li><a href="Devenir Benevola.html">Devenir Bénévole</a></li>
-                <li><a href="#sponsorship-form-section" class="btn" style="background-color: var(--secondary-color); color: var(--dark-bg);">Parrainer un Enfant</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="#" class="btn" style="background-color: var(--secondary-color); color: var(--dark-bg);">Devenir Bénévole</a></li>
             </ul>
         </nav>
     </header>
 
-    <section class="parrainer-hero animate-on-load">
-        <div class="parrainer-hero-content">
-            <h1>Changez une Vie : Parrainez un Enfant</h1>
-            <p>Offrez un avenir rempli d'espoir, d'éducation et de soins à un enfant dans le besoin. Votre soutien régulier fait une différence immense.</p>
+    <section class="benevole-hero animate-on-load">
+        <div class="benevole-hero-content">
+            <h1>Devenez un Héro pour les Enfants</h1>
+            <p>Votre temps et votre passion peuvent transformer des vies. Rejoignez notre communauté de bénévoles dévoués.</p>
         </div>
     </section>
 
-    <section id="what-is-sponsorship" class="container animate-on-load">
-        <h2 class="section-heading">Qu'est-ce que le Parrainage ?</h2>
-        <p>Le parrainage est un engagement spécial et continu qui vous permet de suivre de près l'évolution d'un enfant et de lui offrir un soutien personnalisé. C'est une relation unique et gratifiante.</p>
+    <section id="why-volunteer" class="container animate-on-load">
+        <h2 class="section-heading">Pourquoi Devenir Bénévole Chez Nous ?</h2>
+        <p>En vous engageant avec les Jeunes Humanitaires en Action pour le developpement, vous faites bien plus que donner de votre temps. Vous devenez un membre essentiel de notre famille et contribuez directement à un impact positif durable.</p>
         <div class="benefits-grid">
             <div class="benefit-item animate-on-load animate-delay-1">
-                <i class="fas fa-hand-holding-heart icon"></i>
-                <h3>Soutien Direct</h3>
-                <p>Votre don va directement à un enfant spécifique, pour ses besoins essentiels.</p>
+                <i class="fas fa-heart icon"></i>
+                <h3>Un Impact Réel</h3>
+                <p>Voyez la différence que vous faites dans la vie des enfants au quotidien.</p>
             </div>
             <div class="benefit-item animate-on-load animate-delay-2">
-                <i class="fas fa-envelope-open-text icon"></i>
-                <h3>Connexion Personnelle</h3>
-                <p>Recevez des nouvelles et des mises à jour régulières de l'enfant que vous parrainez.</p>
+                <i class="fas fa-handshake icon"></i>
+                <h3>Communauté & Partage</h3>
+                <p>Rejoignez un réseau de personnes passionnées et partagez des expériences uniques.</p>
             </div>
             <div class="benefit-item animate-on-load animate-delay-3">
-                <i class="fas fa-seedling icon"></i>
-                <h3>Impact Durable</h3>
-                <p>Aidez l'enfant à grandir, s'éduquer et se construire un avenir stable.</p>
+                <i class="fas fa-brain icon"></i>
+                <h3>Développement Personnel</h3>
+                <p>Acquérez de nouvelles compétences, développez votre leadership et votre empathie.</p>
+            </div>
+            <div class="benefit-item animate-on-load animate-delay-4">
+                <i class="fas fa-smile icon"></i>
+                <h3>Joie & Épanouissement</h3>
+                <p>Trouvez une immense satisfaction en aidant ceux qui en ont le plus besoin.</p>
             </div>
         </div>
     </section>
 
-    <section id="children-profiles" class="container animate-on-load">
-        <h2 class="section-heading">Rencontrez des Enfants à Parrainer</h2>
-        <p class="intro">Chaque enfant est unique et a une histoire. Voici quelques profils d'enfants qui attendent votre aide pour un avenir meilleur.</p>
-        <div class="profiles-grid">
-            <div class="profile-card animate-on-load animate-delay-1">
-                <img src="./Aminawebp.webp" alt="Enfant à parrainer">
-                <div class="profile-card-content">
-                    <h3>Amina, 7 ans</h3>
-                    <p>Amina adore dessiner et rêve de devenir artiste. Votre soutien lui permettra d'aller à l'école.</p>
-                    <p>Situation: Orpheline</p>
-                    <button class="btn sponsor-child-btn" data-child-name="Amina">Parrainer Amina</button>
-                </div>
-            </div>
-            <div class="profile-card animate-on-load animate-delay-2">
-                <img src="./Kito.webp" alt="Enfant à parrainer">
-                <div class="profile-card-content">
-                    <h3>Kito, 10 ans</h3>
-                    <p>Kito est un enfant plein d'énergie, passionné de football. Il a besoin d'aide pour sa scolarité et ses repas.</p>
-                    <p>Situation: Vulnérable</p>
-                    <button class="btn sponsor-child-btn" data-child-name="Kito">Parrainer Kito</button>
-                </div>
-            </div>
-            <div class="profile-card animate-on-load animate-delay-3">
-                <img src="./Fatou.webp" alt="Enfant à parrainer">
-                <div class="profile-card-content">
-                    <h3>Fatou, 12 ans</h3>
-                    <p>Fatou est une élève brillante qui aspire à devenir médecin. Elle a besoin d'un soutien pour ses frais universitaires futurs.</p>
-                    <p>Situation: Orpheline</p>
-                    <button class="btn sponsor-child-btn" data-child-name="Fatou">Parrainer Fatou</button>
-                </div>
-            </div>
-            <div class="profile-card animate-on-load animate-delay-4">
-                <img src="./Junior.webp" alt="Enfant à parrainer">
-                <div class="profile-card-content">
-                    <h3>Junior, 8 ans</h3>
-                    <p>Junior est un petit garçon timide mais curieux, qui s'épanouit grâce à l'accès aux livres. Il a besoin d'un cadre stable.</p>
-                    <p>Situation: Orphelin</p>
-                    <button class="btn sponsor-child-btn" data-child-name="Junior">Parrainer Junior</button>
-                </div>
-            </div>
-            <div class="profile-card animate-on-load animate-delay-5">
-                <img src="./Neema.jpg" alt="Enfant à parrainer">
-                <div class="profile-card-content">
-                    <h3>Neema, 6 ans</h3>
-                    <p>Neema est pleine de joie et aime chanter. Votre aide lui fournira des vêtements et des soins.</p>
-                    <p>Situation: Vulnérable</p>
-                    <button class="btn sponsor-child-btn" data-child-name="Neema">Parrainer Neema</button>
-                </div>
-            </div>
+    <section id="roles" class="container animate-on-load">
+        <h2 class="section-heading">Nos Besoins Actuels</h2>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem;">Nous recherchons des bénévoles pour diverses missions. Trouvez celle qui correspond à vos talents et à vos disponibilités !</p>
+        <div class="roles-list">
+            <div class="role-tag animate-on-load animate-delay-1">Soutien Scolaire <i class="fas fa-book-reader"></i></div>
+            <div class="role-tag animate-on-load animate-delay-2">Activités Récréatives <i class="fas fa-futbol"></i></div>
+            <div class="role-tag animate-on-load animate-delay-3">Aide aux Repas <i class="fas fa-utensils"></i></div>
+            <div class="role-tag animate-on-load animate-delay-4">Accompagnement Médical <i class="fas fa-stethoscope"></i></div>
+            <div class="role-tag animate-on-load animate-delay-5">Assistance Administrative <i class="fas fa-file-alt"></i></div>
+            <div class="role-tag animate-on-load animate-delay-1">Logistique & Événements <i class="fas fa-calendar-alt"></i></div>
+            <div class="role-tag animate-on-load animate-delay-2">Collecte de Fonds <i class="fas fa-hand-holding-usd"></i></div>
+            <div class="role-tag animate-on-load animate-delay-3">Photographie/Vidéo <i class="fas fa-camera"></i></div>
         </div>
-        <p style="margin-top: 3rem; font-style: italic;">Note : Les photos et descriptions sont des exemples. Le parrainage vous mettra en relation avec un enfant en besoin en fonction de nos disponibilités et des critères de l'organisation, après validation de votre candidature.</p>
     </section>
 
-    <section id="coverage" class="animate-on-load">
+    <section id="process" class="animate-on-load">
         <div class="container">
-            <h2 class="section-heading">Ce que Votre Parrainage Couvre</h2>
-            <p>Votre contribution mensuelle de 50 USD assure un soutien vital et complet pour l'enfant que vous parrainez, couvrant ses besoins fondamentaux et son épanouissement.</p>
-            <div class="sponsorship-amount animate-on-load animate-delay-1">50 USD / mois</div>
-            <div class="coverage-grid">
-                <div class="coverage-item animate-on-load animate-delay-2">
-                    <i class="fas fa-graduation-cap icon"></i>
-                    <h3>Éducation</h3>
-                    <p>Frais de scolarité, fournitures, uniformes, tutorat.</p>
+            <h2 class="section-heading">Le Processus de Candidature</h2>
+            <p>Devenir bénévole est simple et transparent. Suivez ces étapes pour nous rejoindre :</p>
+            <div class="process-steps">
+                <div class="step-item animate-on-load animate-delay-1">
+                    <span class="step-number">1</span>
+                    <h3>Remplir le Formulaire</h3>
+                    <p>Commencez par nous parler de vous et de vos intérêts via notre formulaire en ligne.</p>
                 </div>
-                <div class="coverage-item animate-on-load animate-delay-3">
-                    <i class="fas fa-apple-alt icon"></i>
-                    <h3>Nutrition</h3>
-                    <p>Repas équilibrés et suffisants au quotidien.</p>
+                <div class="step-item animate-on-load animate-delay-2">
+                    <span class="step-number">2</span>
+                    <h3>Entretien Personnalisé</h3>
+                    <p>Nous vous contacterons pour un entretien afin de mieux cerner vos attentes et nos besoins.</p>
                 </div>
-                <div class="coverage-item animate-on-load animate-delay-4">
-                    <i class="fas fa-first-aid icon"></i>
-                    <h3>Soins de Santé</h3>
-                    <p>Accès aux soins médicaux, médicaments, bilans de santé.</p>
+                <div class="step-item animate-on-load animate-delay-3">
+                    <span class="step-number">3</span>
+                    <h3>Formation & Intégration</h3>
+                    <p>Participez à une courte formation pour vous préparer à votre rôle et rencontrer l'équipe.</p>
                 </div>
-                <div class="coverage-item animate-on-load animate-delay-5">
-                    <i class="fas fa-tshirt icon"></i>
-                    <h3>Besoins Essentiels</h3>
-                    <p>Vêtements, hygiène, et autres nécessités de base.</p>
+                <div class="step-item animate-on-load animate-delay-4">
+                    <span class="step-number">4</span>
+                    <h3>Commencez à Aider !</h3>
+                    <p>Félicitations ! Vous êtes prêt à faire une réelle différence dans la vie des enfants.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="process" class="container animate-on-load">
-        <h2 class="section-heading">Comment Parrainer ?</h2>
-        <p>Le processus est simple et sécurisé, conçu pour établir rapidement votre lien avec un enfant.</p>
-        <div class="process-steps">
-            <div class="step-item animate-on-load animate-delay-1">
-                <span class="step-number">1</span>
-                <h3>Sélectionnez un Enfant</h3>
-                <p>Choisissez un profil d'enfant ci-dessus ou laissez-nous en sélectionner un pour vous.</p>
-            </div>
-            <div class="step-item animate-on-load animate-delay-2">
-                <span class="step-number">2</span>
-                <h3>Remplissez le Formulaire</h3>
-                <p>Fournissez vos coordonnées dans le formulaire de parrainage.</p>
-            </div>
-            <div class="step-item animate-on-load animate-delay-3">
-                <span class="step-number">3</span>
-                <h3>Mettez en Place le Paiement</h3>
-                <p>Organisez votre contribution mensuelle via nos méthodes sécurisées.</p>
-            </div>
-            <div class="step-item animate-on-load animate-delay-4">
-                <span class="step-number">4</span>
-                <h3>Recevez des Nouvelles</h3>
-                <p>Commencez à recevoir des mises à jour et des correspondances de votre enfant.</p>
-            </div>
-        </div>
-    </section>
+    <section id="volunteer-form-section" class="container animate-on-load">
+        <h2 class="section-heading">Postulez Maintenant</h2>
+        <p style="text-align: center; max-width: 600px; margin: 0 auto 1.5rem;">Prêt à vous joindre à nous ? Remplissez ce formulaire et nous vous contacterons très bientôt !</p>
+        <form action="https://formspree.io/f/xovlwdzn" method="POST">
+            <label for="full-name">Nom Complet :</label>
+            <input type="text" id="full-name" name="Nom Complet" required>
+            
+            <label for="email">Email :</label>
+            <input type="email" id="email" name="Email" required>
+            
+            <label for="phone">Téléphone :</label>
+            <input type="tel" id="phone" name="Téléphone" placeholder="+243 998 591 642">
 
-    <section id="sponsorship-form-section" class="container animate-on-load">
-        <h2 class="section-heading">Formulaire de Parrainage</h2>
-        <p style="text-align: center; max-width: 600px; margin: 0 auto 1.5rem;">Commencez votre parcours de parrainage aujourd'hui. Remplissez ce formulaire et nous vous contacterons pour finaliser les détails.</p>
-        <form action="https://formspree.io/f/votre_code_formspree_parrainage" method="POST">
-            <label for="sponsor-name">Votre Nom Complet :</label>
-            <input type="text" id="sponsor-name" name="Nom du Parrain" required>
-            
-            <label for="sponsor-email">Votre Email :</label>
-            <input type="email" id="sponsor-email" name="Email du Parrain" required>
-            
-            <label for="sponsor-phone">Téléphone :</label>
-            <input type="tel" id="sponsor-phone" name="Téléphone du Parrain" placeholder="+243 998 591 642">
+            <label for="availability">Vos Disponibilités :</label>
+            <select id="availability" name="Disponibilités" required>
+                <option value="">Sélectionnez une option</option>
+                <option value="quelques-heures-semaine">Quelques heures par semaine</option>
+                <option value="un-jour-semaine">Un jour par semaine</option>
+                <option value="weekends">Week-ends uniquement</option>
+                <option value="ponctuel-evenements">Ponctuel (pour événements)</option>
+                <option value="flexibles">Flexibles, à discuter</option>
+            </select>
 
-            <label for="child-selection">Enfant que vous souhaitez parrainer (optionnel) :</label>
-            <input type="text" id="child-selection" name="Enfant Sélectionné" placeholder="Ex: Amina" readonly>
+            <label for="skills">Vos Compétences ou Intérêts (ex: soutien scolaire, cuisine, arts, administration) :</label>
+            <textarea id="skills" name="Compétences" rows="3" placeholder="Décrivez brièvement vos compétences..."></textarea>
             
-            <label for="comments">Message / Questions (optionnel) :</label>
-            <textarea id="comments" name="Commentaire Parrain" rows="4"></textarea>
-
-            <div class="checkbox-group">
-                <input type="checkbox" id="terms-agree" name="Accepte Termes" required>
-                <label for="terms-agree">J'ai lu et j'accepte les <a href="#" style="color: var(--primary-color); text-decoration: underline;">Termes et Conditions de Parrainage</a>.</label>
-            </div>
+            <label for="motivation">Pourquoi souhaitez-vous devenir bénévole chez Jhad ?</label>
+            <textarea id="motivation" name="Motivation" rows="5" required></textarea>
             
-            <input type="hidden" name="_replyto" value="votre_email_parrainage@example.com">
-            <button type="submit" class="btn">Devenir Parrain</button>
+            <input type="hidden" name="_replyto" value="votre_email_benevole@example.com">
+            <button type="submit" class="btn">Envoyer ma Candidature</button>
         </form>
+    </section>
+
+    <section id="volunteer-testimonials" class="container animate-on-load">
+        <h2 class="section-heading">Témoignages de Nos Bénévoles</h2>
+        <div class="testimonial-slider">
+            <div class="testimonial-item animate-on-load animate-delay-1">
+                <img src="./Photo de bénévole.jpg" alt="Photo de bénévole 1">
+                <p>"Chaque jour passé avec ces enfants est un cadeau. Leur sourire est ma plus grande récompense."</p>
+                <span>- Sarah S., Bénévole depuis 4 ans</span>
+            </div>
+            <div class="testimonial-item animate-on-load animate-delay-2">
+                <img src="./img4.jpg" alt="Photo de bénévole 2">
+                <p>"J'ai appris tellement de choses ici, non seulement sur le bénévolat, mais aussi sur moi-même. C'est une expérience transformatrice."</p>
+                <span>- Divin B., Bénévole en soutien scolaire</span>
+            </div>
+            <div class="testimonial-item animate-on-load animate-delay-3">
+                <img src="./Omari.jpg" alt="Photo d'un enfant bénéficiaire">
+                <p>"Grâce à mes tuteurs bénévoles, mes notes se sont améliorées et je me sens plus confiant. Merci !"</p>
+                <span>- Junior, Bénéficiaire</span>
+            </div>
+        </div>
     </section>
 
     <footer class="footer">
@@ -811,13 +747,12 @@
                     <li><a href="index.html#about">À Propos de Nous</a></li>
                     <li><a href="index.html#actions">Nos Programmes</a></li>
                     <li><a href="Don.html">Faire un Don</a></li>
-                    <li><a href="Devenir Benevola.html">Devenir Bénévole</a></li>
                     <li><a href="index.html#contact">Contactez-nous</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h3>Contact</h3>
-                <p><i class="fas fa-map-marker-alt"></i>  123 Rue de karmel, Goma, RDC</p>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Rue de karmel, Goma, RDC</p>
                 <p><i class="fas fa-phone"></i> +243 990 565 124</p>
                 <p><i class="fas fa-envelope"></i> info@jhad.org</p>
             </div>
@@ -832,26 +767,15 @@
             // Mise à jour de l'année dans le pied de page
             document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-            // Gérer la sélection de l'enfant et pré-remplir le formulaire
-            const sponsorChildButtons = document.querySelectorAll('.sponsor-child-btn');
-            const childSelectionInput = document.getElementById('child-selection');
-
-            sponsorChildButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const childName = button.dataset.childName;
-                    childSelectionInput.value = childName;
-                    document.getElementById('sponsorship-form-section').scrollIntoView({ behavior: 'smooth' });
-                    childSelectionInput.focus();
-                });
-            });
-
             // Gérer le menu responsive (début du nouveau script)
             const menuToggle = document.getElementById('menu-toggle');
             const navLinks = document.getElementById('nav-links');
 
-            menuToggle.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-            });
+            if (menuToggle && navLinks) {
+                menuToggle.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                });
+            }
 
             // Fermer le menu si un lien est cliqué sur mobile
             const navLinksItems = document.querySelectorAll('.nav-links a');

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galerie d'images interactive</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 0 20px;
+}
+
+.gallery img {
+    width: 100%;
+    height: 250px; /* Taille fixe pour toutes les images */
+    object-fit: cover; /* Recadre l'image pour qu'elle remplisse l'espace */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.gallery img:hover {
+    transform: scale(1.05); /* Effet d'agrandissement au survol */
+}
+
+/* Styles du pop-up */
+.modal {
+    display: none; /* Caché par défaut */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 90%;
+    animation: zoom 0.6s;
+}
+
+@keyframes zoom {
+    from {transform: scale(0.1);}
+    to {transform: scale(1);}
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: #bbb;
+}
+    </style>
+<body>
+
+    <h1>Notre Super Galerie Photos</h1>
+
+    <div class="gallery">
+        <img src="./Img1.jpg" alt="Description de l'image 1">
+        <img src="./img2.jpg" alt="Description de l'image 2">
+        <img src="./img3.jpg" alt="Description de l'image 3">
+        <img src="./img44.jpg" alt="Description de l'image 4">
+        <img src="./img5.jpg" alt="Description de l'image 5">
+        <img src="./img6.jpg" alt="Description de l'image 6">
+    </div>
+
+    <div id="image-modal" class="modal">
+        <span class="close-btn">&times;</span>
+        <img class="modal-content" id="modal-image">
+    </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('image-modal');
+    const modalImage = document.getElementById('modal-image');
+    const galleryImages = document.querySelectorAll('.gallery img');
+    const closeBtn = document.querySelector('.close-btn');
+
+    // Pour chaque image de la galerie
+    galleryImages.forEach(image => {
+        image.addEventListener('click', function() {
+            modal.style.display = 'flex'; // Affiche le pop-up
+            modalImage.src = this.src;    // Met l'image cliquée dans le pop-up
+        });
+    });
+
+    // Ferme le pop-up en cliquant sur le bouton
+    closeBtn.addEventListener('click', function() {
+        modal.style.display = 'none';
+    });
+
+    // Ferme le pop-up en cliquant en dehors de l'image
+    window.addEventListener('click', function(event) {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+});
+</script>
+    
+</html>

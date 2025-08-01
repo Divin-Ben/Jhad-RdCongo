@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devenir Bénévole - Enfants d'Espoir</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* Variables CSS */
+        :root {
+            --primary-color: #4CAF50; /* Vert espérance */
+            --secondary-color: #FFC107; /* Jaune chaleur */
+            --dark-bg: #2C3E50; /* Bleu nuit pour fond */
+            --light-text: #ECF0F1; /* Texte clair */
+            --dark-text: #34495E; /* Texte sombre */
+            --light-bg: #F8F9FA; /* Fond clair */
+            --card-bg: #FFFFFF; /* Fond des cartes */
+            --animation-speed: 0.5s;
+        }
+
+        /* Styles Généraux */
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark-bg);
+            margin-bottom: 1rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: color var(--animation-speed) ease;
+        }
+
+        a:hover {
+            color: var(--secondary-color);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            transition: background-color var(--animation-speed) ease, transform 0.3s ease;
+            font-weight: 600;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            color: #fff;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-heading::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .animate-on-load {
+            animation: fadeIn 1.2s ease-out forwards;
+            opacity: 0; /* Caché initialement */
+        }
+        
+        .animate-delay-1 { animation-delay: 0.3s; }
+        .animate-delay-2 { animation-delay: 0.6s; }
+        .animate-delay-3 { animation-delay: 0.9s; }
+        .animate-delay-4 { animation-delay: 1.2s; }
+
+
+        /* Header */
+        .header {
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--light-text);
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--light-text);
+            font-weight: 600;
+            transition: color var(--animation-speed) ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .benevole-hero {
+            position: relative;
+            height: 450px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            overflow: hidden;
+            background: url('images/benevole-hero.jpg') no-repeat center center/cover; /* Votre image d'en-tête */
+            animation: zoomInOut 20s infinite alternate; /* Animation de l'image de fond */
+        }
+        @keyframes zoomInOut {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05); }
+        }
+        .benevole-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Overlay sombre */
+            z-index: 1;
+        }
+        .benevole-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 1rem;
+            animation: fadeIn 1.5s ease-out;
+        }
+        .benevole-hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+        .benevole-hero-content p {
+            font-size: 1.2rem;
+            color: var(--light-text);
+        }
+
+        /* Why Volunteer Section */
+        #why-volunteer {
+            padding: 4rem 0;
+            background-color: var(--card-bg);
+            text-align: center;
+        }
+        #why-volunteer p {
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+        }
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+        .benefit-item {
+            background-color: var(--light-bg);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .benefit-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .benefit-item .icon {
+            font-size: 3.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        .benefit-item h3 {
+            font-size: 1.8rem;
+            color: var(--dark-bg);
+            margin-bottom: 0.8rem;
+        }
+        .benefit-item p {
+            font-size: 1rem;
+            color: var(--dark-text);
+        }
+
+        /* Roles Section */
+        #roles {
+            padding: 4rem 0;
+            background-color: var(--light-bg);
+            text-align: center;
+        }
+        .roles-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .role-tag {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .role-tag:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        /* Process Section */
+        #process {
+            padding: 4rem 0;
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            text-align: center;
+        }
+        #process .section-heading {
+            color: var(--light-text);
+        }
+        #process .section-heading::after {
+            background-color: var(--secondary-color);
+        }
+        .process-steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .step-item {
+            background-color: var(--dark-text);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            width: 250px;
+            text-align: center;
+            position: relative;
+            transform: translateY(0); /* Base pour l'animation */
+            transition: transform 0.5s ease-out;
+        }
+        .step-item:nth-child(even) { /* Pour un effet visuel décalé */
+            transform: translateY(-10px);
+        }
+        .step-item .step-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            display: block;
+            line-height: 1;
+        }
+        .step-item h3 {
+            font-size: 1.6rem;
+            color: var(--light-text);
+            margin-bottom: 0.8rem;
+        }
+        .step-item p {
+            font-size: 0.95rem;
+            color: #ccc;
+        }
+
+        /* Volunteer Form Section */
+        #volunteer-form-section {
+            padding: 4rem 0;
+            background-color: var(--card-bg);
+        }
+        #volunteer-form-section h2 {
+            text-align: center;
+        }
+        #volunteer-form-section form {
+            max-width: 700px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            background-color: var(--light-bg);
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        #volunteer-form-section form label {
+            font-weight: 600;
+            color: var(--dark-text);
+        }
+        #volunteer-form-section form input[type="text"],
+        #volunteer-form-section form input[type="email"],
+        #volunteer-form-section form input[type="tel"],
+        #volunteer-form-section form textarea,
+        #volunteer-form-section form select {
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        #volunteer-form-section form textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        #volunteer-form-section form .btn {
+            align-self: center;
+            margin-top: 1.5rem;
+            width: fit-content;
+        }
+
+        /* Testimonials Section */
+        #volunteer-testimonials {
+            padding: 4rem 0;
+            background-color: var(--light-bg);
+        }
+        .testimonial-slider {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            gap: 2rem;
+            padding-bottom: 1rem;
+        }
+        .testimonial-item {
+            flex: 0 0 450px;
+            scroll-snap-align: start;
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .testimonial-item img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        .testimonial-item p {
+            font-style: italic;
+            margin-bottom: 1rem;
+            color: var(--dark-text);
+        }
+        .testimonial-item span {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-col {
+            flex: 1;
+            min-width: 250px;
+            text-align: left;
+        }
+
+        .footer-col h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .footer-col p, .footer-col ul {
+            font-size: 0.95rem;
+            color: #ccc;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .footer-col ul li {
+            margin-bottom: 0.5rem;
+        }
+        .footer-col a {
+            color: #ccc;
+        }
+        .footer-col a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-social-icons {
+            margin-top: 1rem;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+        .footer-social-icons a {
+            font-size: 1.5rem;
+            color: var(--light-text);
+        }
+        .footer-social-icons a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-bottom {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.85rem;
+            color: #aaa;
+        }
+
+        /* Media Queries pour la Responsivité */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0 1.5rem;
+            }
+            .nav-links li {
+                margin-left: 1rem;
+            }
+            .logo {
+                font-size: 1.5rem;
+            }
+            .benevole-hero-content h1 {
+                font-size: 2.2rem;
+            }
+            .benevole-hero-content p {
+                font-size: 1rem;
+            }
+            .section-heading {
+                font-size: 2rem;
+            }
+            .benefits-grid, .process-steps {
+                grid-template-columns: 1fr;
+            }
+            .step-item:nth-child(even) { /* Réinitialiser le décalage pour le mobile */
+                transform: translateY(0);
+            }
+            .roles-list {
+                flex-direction: column;
+                align-items: center;
+            }
+            .role-tag {
+                width: 80%;
+                max-width: 300px;
+            }
+            .testimonial-item {
+                flex: 0 0 90%;
+            }
+            .footer-content {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .footer-col {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <nav class="navbar container">
+            <a href="index.html" class="logo">
+                <img src="./JHAD .jpg" alt="Logo Jhad">
+               Jhad
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html#about">À Propos</a></li>
+                <li><a href="index.html#actions">Nos Actions</a></li>
+                <li><a href="Don.html">Faire un Don</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="#" class="btn" style="background-color: var(--secondary-color); color: var(--dark-bg);">Devenir Bénévole</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="benevole-hero animate-on-load">
+        <div class="benevole-hero-content">
+            <h1>Devenez un Héro pour les Enfants</h1>
+            <p>Votre temps et votre passion peuvent transformer des vies. Rejoignez notre communauté de bénévoles dévoués.</p>
+        </div>
+    </section>
+
+    <section id="why-volunteer" class="container animate-on-load">
+        <h2 class="section-heading">Pourquoi Devenir Bénévole Chez Nous ?</h2>
+        <p>En vous engageant avec les Jeunes Humanitaires en Action pour le developpement, vous faites bien plus que donner de votre temps. Vous devenez un membre essentiel de notre famille et contribuez directement à un impact positif durable.</p>
+        <div class="benefits-grid">
+            <div class="benefit-item animate-on-load animate-delay-1">
+                <i class="fas fa-heart icon"></i>
+                <h3>Un Impact Réel</h3>
+                <p>Voyez la différence que vous faites dans la vie des enfants au quotidien.</p>
+            </div>
+            <div class="benefit-item animate-on-load animate-delay-2">
+                <i class="fas fa-handshake icon"></i>
+                <h3>Communauté & Partage</h3>
+                <p>Rejoignez un réseau de personnes passionnées et partagez des expériences uniques.</p>
+            </div>
+            <div class="benefit-item animate-on-load animate-delay-3">
+                <i class="fas fa-brain icon"></i>
+                <h3>Développement Personnel</h3>
+                <p>Acquérez de nouvelles compétences, développez votre leadership et votre empathie.</p>
+            </div>
+            <div class="benefit-item animate-on-load animate-delay-4">
+                <i class="fas fa-smile icon"></i>
+                <h3>Joie & Épanouissement</h3>
+                <p>Trouvez une immense satisfaction en aidant ceux qui en ont le plus besoin.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="roles" class="container animate-on-load">
+        <h2 class="section-heading">Nos Besoins Actuels</h2>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem;">Nous recherchons des bénévoles pour diverses missions. Trouvez celle qui correspond à vos talents et à vos disponibilités !</p>
+        <div class="roles-list">
+            <div class="role-tag">Soutien Scolaire <i class="fas fa-book-reader"></i></div>
+            <div class="role-tag">Activités Récréatives <i class="fas fa-futbol"></i></div>
+            <div class="role-tag">Aide aux Repas <i class="fas fa-utensils"></i></div>
+            <div class="role-tag">Accompagnement Médical <i class="fas fa-stethoscope"></i></div>
+            <div class="role-tag">Assistance Administrative <i class="fas fa-file-alt"></i></div>
+            <div class="role-tag">Logistique & Événements <i class="fas fa-calendar-alt"></i></div>
+            <div class="role-tag">Collecte de Fonds <i class="fas fa-hand-holding-usd"></i></div>
+            <div class="role-tag">Photographie/Vidéo <i class="fas fa-camera"></i></div>
+        </div>
+    </section>
+
+    <section id="process" class="animate-on-load">
+        <div class="container">
+            <h2 class="section-heading">Le Processus de Candidature</h2>
+            <p>Devenir bénévole est simple et transparent. Suivez ces étapes pour nous rejoindre :</p>
+            <div class="process-steps">
+                <div class="step-item animate-on-load animate-delay-1">
+                    <span class="step-number">1</span>
+                    <h3>Remplir le Formulaire</h3>
+                    <p>Commencez par nous parler de vous et de vos intérêts via notre formulaire en ligne.</p>
+                </div>
+                <div class="step-item animate-on-load animate-delay-2">
+                    <span class="step-number">2</span>
+                    <h3>Entretien Personnalisé</h3>
+                    <p>Nous vous contacterons pour un entretien afin de mieux cerner vos attentes et nos besoins.</p>
+                </div>
+                <div class="step-item animate-on-load animate-delay-3">
+                    <span class="step-number">3</span>
+                    <h3>Formation & Intégration</h3>
+                    <p>Participez à une courte formation pour vous préparer à votre rôle et rencontrer l'équipe.</p>
+                </div>
+                <div class="step-item animate-on-load animate-delay-4">
+                    <span class="step-number">4</span>
+                    <h3>Commencez à Aider !</h3>
+                    <p>Félicitations ! Vous êtes prêt à faire une réelle différence dans la vie des enfants.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="volunteer-form-section" class="container animate-on-load">
+        <h2 class="section-heading">Postulez Maintenant</h2>
+        <p style="text-align: center; max-width: 600px; margin: 0 auto 1.5rem;">Prêt à vous joindre à nous ? Remplissez ce formulaire et nous vous contacterons très bientôt !</p>
+        <form action="https://formspree.io/f/xovlwdzn" method="POST">
+            <label for="full-name">Nom Complet :</label>
+            <input type="text" id="full-name" name="Nom Complet" required>
+            
+            <label for="email">Email :</label>
+            <input type="email" id="email" name="Email" required>
+            
+            <label for="phone">Téléphone :</label>
+            <input type="tel" id="phone" name="Téléphone" placeholder="+243 998 591 642">
+
+            <label for="availability">Vos Disponibilités :</label>
+            <select id="availability" name="Disponibilités" required>
+                <option value="">Sélectionnez une option</option>
+                <option value="quelques-heures-semaine">Quelques heures par semaine</option>
+                <option value="un-jour-semaine">Un jour par semaine</option>
+                <option value="weekends">Week-ends uniquement</option>
+                <option value="ponctuel-evenements">Ponctuel (pour événements)</option>
+                <option value="flexibles">Flexibles, à discuter</option>
+            </select>
+
+            <label for="skills">Vos Compétences ou Intérêts (ex: soutien scolaire, cuisine, arts, administration) :</label>
+            <textarea id="skills" name="Compétences" rows="3" placeholder="Décrivez brièvement vos compétences..."></textarea>
+            
+            <label for="motivation">Pourquoi souhaitez-vous devenir bénévole chez Enfants d'Espoir ?</label>
+            <textarea id="motivation" name="Motivation" rows="5" required></textarea>
+            
+            <input type="hidden" name="_replyto" value="votre_email_benevole@example.com">
+            <button type="submit" class="btn">Envoyer ma Candidature</button>
+        </form>
+    </section>
+
+    <section id="volunteer-testimonials" class="container animate-on-load">
+        <h2 class="section-heading">Témoignages de Nos Bénévoles</h2>
+        <div class="testimonial-slider">
+            <div class="testimonial-item">
+                <img src="./Photo de bénévole.jpg" alt="Photo de bénévole 1">
+                <p>"Chaque jour passé avec ces enfants est un cadeau. Leur sourire est ma plus grande récompense."</p>
+                <span>- Sarah S., Bénévole depuis 4 ans</span>
+            </div>
+            <div class="testimonial-item">
+                <img src="./img4.jpg" alt="Photo de bénévole 2">
+                <p>"J'ai appris tellement de choses ici, non seulement sur le bénévolat, mais aussi sur moi-même. C'est une expérience transformatrice."</p>
+                <span>- Divin B., Bénévole en soutien scolaire</span>
+            </div>
+            <div class="testimonial-item">
+                <img src="./Omari.jpg" alt="Photo d'un enfant bénéficiaire">
+                <p>"Grâce à mes tuteurs bénévoles, mes notes se sont améliorées et je me sens plus confiant. Merci !"</p>
+                <span>- Junior, Bénéficiaire</span>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-col">
+                <h3>Jhad RdCongo</h3>
+                <p>Bâtir un avenir meilleur, un enfant à la fois.</p>
+                <div class="footer-social-icons">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Liens Rapides</h3>
+                <ul>
+                    <li><a href="index.html#about">À Propos de Nous</a></li>
+                    <li><a href="index.html#actions">Nos Programmes</a></li>
+                    <li><a href="Don.html">Faire un Don</a></li>
+                    <li><a href="index.html#contact">Contactez-nous</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contact</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Rue de karmel, Goma, RDC</p>
+                <p><i class="fas fa-phone"></i> +243 990 565 124</p>
+                <p><i class="fas fa-envelope"></i> info@jhad.org</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; <span id="currentYear"></span>Jhad. Tous droits réservés.
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mise à jour de l'année dans le pied de page
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+        });
+    </script>
+</body>
+</html>

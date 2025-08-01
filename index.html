@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enfants d'Espoir - Chaque enfant, un avenir</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* Variables CSS */
+        :root {
+            --primary-color: #4CAF50; /* Vert espérance */
+            --secondary-color: #FFC107; /* Jaune chaleur */
+            --dark-bg: #2C3E50; /* Bleu nuit pour fond */
+            --light-text: #ECF0F1; /* Texte clair */
+            --dark-text: #34495E; /* Texte sombre */
+            --light-bg: #F8F9FA; /* Fond clair */
+            --card-bg: #FFFFFF; /* Fond des cartes */
+            --animation-speed: 0.5s;
+        }
+
+        /* Styles Généraux */
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+            overflow-x: hidden; /* Empêche le défilement horizontal inattendu */
+        }
+
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark-bg);
+            margin-bottom: 1rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: color var(--animation-speed) ease;
+        }
+
+        a:hover {
+            color: var(--secondary-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            transition: background-color var(--animation-speed) ease, transform 0.3s ease;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            color: #fff; /* S'assurer que le texte reste blanc */
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-heading::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Header */
+        .header {
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--light-text);
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--light-text);
+            font-weight: 600;
+            transition: color var(--animation-speed) ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-toggle {
+            display: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--light-text);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            overflow: hidden;
+            margin-top: 60px; /* Espace pour le header fixe */
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6); /* Overlay sombre */
+            z-index: 1;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('images/hero-bg.jpg') no-repeat center center/cover; /* Remplacez par votre image */
+            animation: zoomInOut 30s infinite alternate; /* Animation de l'image de fond */
+            z-index: 0;
+        }
+
+        @keyframes zoomInOut {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--light-text);
+        }
+
+        /* About Section */
+        #about {
+            background-color: var(--card-bg);
+            padding: 4rem 0;
+        }
+
+        #about p {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+        }
+        #about .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+            text-align: center;
+        }
+        .stat-item {
+            background-color: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+        .stat-item .icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        .stat-item .number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--dark-bg);
+            margin-bottom: 0.5rem;
+        }
+        .stat-item p {
+            font-size: 1rem;
+            color: var(--dark-text);
+            margin: 0;
+        }
+
+
+        /* Our Actions Section */
+        #actions {
+            padding: 4rem 0;
+            background-color: var(--light-bg);
+        }
+
+        .actions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .action-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .action-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        .action-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            filter: grayscale(0%);
+            transition: filter 0.5s ease;
+        }
+        .action-card:hover img {
+            filter: grayscale(0%); /* Enlève le filtre si vous l'aviez mis en gris par défaut */
+        }
+
+        .action-card-content {
+            padding: 2rem;
+        }
+
+        .action-card-content h3 {
+            font-size: 1.8rem;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .action-card-content p {
+            font-size: 1rem;
+            color: var(--dark-text);
+        }
+
+        /* How to Help Section */
+        #help {
+            padding: 4rem 0;
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            text-align: center;
+        }
+        #help .section-heading {
+            color: var(--light-text);
+        }
+        #help .section-heading::after {
+            background-color: var(--secondary-color);
+        }
+
+        .help-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .help-option {
+            background-color: var(--dark-text); /* Fond plus sombre pour les options */
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .help-option:hover {
+            transform: translateY(-8px);
+        }
+
+        .help-option .icon {
+            font-size: 3.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            animation: bounce 2s infinite ease-in-out; /* Animation d'icône */
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-15px);
+            }
+            60% {
+                transform: translateY(-8px);
+            }
+        }
+
+        .help-option h3 {
+            font-size: 1.6rem;
+            color: var(--light-text);
+            margin-bottom: 0.8rem;
+        }
+
+        .help-option p {
+            font-size: 0.95rem;
+            color: #ccc;
+            margin-bottom: 1.5rem;
+        }
+
+        .help-option .btn {
+            background-color: var(--secondary-color);
+            color: var(--dark-bg);
+        }
+        .help-option .btn:hover {
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+
+        /* Testimonials Section */
+        #testimonials {
+            padding: 4rem 0;
+            background-color: var(--card-bg);
+        }
+
+        .testimonial-slider {
+            display: flex;
+            overflow-x: auto; /* Permet le défilement si trop de témoignages */
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            gap: 2rem;
+            padding-bottom: 1rem; /* Pour la barre de défilement */
+        }
+        .testimonial-item {
+            flex: 0 0 450px; /* Taille fixe pour chaque témoignage */
+            scroll-snap-align: start;
+            background-color: var(--light-bg);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .testimonial-item img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        .testimonial-item p {
+            font-style: italic;
+            margin-bottom: 1rem;
+            color: var(--dark-text);
+        }
+        .testimonial-item span {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        /* Contact Section */
+        #contact {
+            padding: 4rem 0;
+            background-color: var(--light-bg);
+        }
+
+        #contact form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            background-color: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        #contact form label {
+            font-weight: 600;
+            color: var(--dark-text);
+        }
+
+        #contact form input,
+        #contact form textarea {
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            width: 100%;
+            box-sizing: border-box; /* Inclure le padding dans la largeur */
+        }
+
+        #contact form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        #contact form .btn {
+            align-self: flex-start; /* Alignement à gauche pour le bouton */
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-col {
+            flex: 1;
+            min-width: 250px;
+            text-align: left;
+        }
+
+        .footer-col h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .footer-col p, .footer-col ul {
+            font-size: 0.95rem;
+            color: #ccc;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .footer-col ul li {
+            margin-bottom: 0.5rem;
+        }
+        .footer-col a {
+            color: #ccc;
+        }
+        .footer-col a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-social-icons {
+            margin-top: 1rem;
+            display: flex;
+            gap: 1rem;
+            justify-content: center; /* Centrer les icônes si la colonne est petite */
+        }
+        .footer-social-icons a {
+            font-size: 1.5rem;
+            color: var(--light-text);
+        }
+        .footer-social-icons a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-bottom {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.85rem;
+            color: #aaa;
+        }
+
+        /* Media Queries pour la Responsivité */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-wrap: wrap;
+                padding: 0 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+                background-color: var(--dark-bg);
+                position: absolute;
+                top: 100%;
+                left: 0;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 0;
+                padding: 1rem 0;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+
+            .nav-links li:last-child {
+                border-bottom: none;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .section-heading {
+                font-size: 2rem;
+            }
+
+            .actions-grid, .help-grid, .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonial-item {
+                flex: 0 0 90%; /* Ajuste la largeur pour le défilement mobile */
+                margin: 0 auto; /* Centre les témoignages si nécessaire */
+            }
+
+            .footer-content {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .footer-col {
+                text-align: center;
+            }
+            .footer-social-icons {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <nav class="navbar container">
+            <a href="#" class="logo">
+                <img src="./JHAD .jpg" alt="Logo Jhad">
+                Jhad
+            </a>
+            <ul class="nav-links">
+                <li><a href="#about">À Propos</a></li>
+                <li><a href="#actions">Nos Actions</a></li>
+                <li><a href="#help">Comment Aider</a></li>
+                <li><a href="#testimonials">Témoignages</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="Don.html" class="btn">Faire un Don</a></li>
+            </ul>
+            <div class="nav-toggle" id="navToggle"><i class="fas fa-bars"></i></div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content animate-on-scroll">
+            <h1>Chaque Enfant Mérite un Avenir Lumineux</h1>
+            <p>Nous offrons espoir, protection et éducation aux enfants orphelins et vulnérables.</p>
+            <a href="Don.html" class="btn">Faites un Don Aujourd'hui</a>
+        </div>
+    </section>
+
+    <section id="about" class="container animate-on-scroll">
+        <h2 class="section-heading">Notre Mission</h2>
+        <p>Les JEUNES HUMANITAIRES EN ACTION POUR LE DÉVELOPPEMENT J.H.A.D sont une ONG apolitique de droit congolais créée en septembre 2021 par des jeunes volontaires. Notre objectif est d’intervenir dans les programmes multisectoriels pour venir en aide aux plus oubliés.</p>
+        <p>Depuis 2021, nous travaillons sans relâche pour fournir un soutien essentiel, des foyers aimants et des programmes éducatifs pour bâtir un avenir meilleur pour les générations futures.</p>
+        <div class="stats-grid">
+            <div class="stat-item animate-on-scroll">
+                <i class="fas fa-users icon"></i>
+                <div class="number">1200+</div>
+                <p>Enfants aidés</p>
+            </div>
+            <div class="stat-item animate-on-scroll">
+                <i class="fas fa-home icon"></i>
+                <div class="number">0</div>
+                <p>Centres d'accueil</p>
+            </div>
+            <div class="stat-item animate-on-scroll">
+                <i class="fas fa-graduation-cap icon"></i>
+                <div class="number">75%</div>
+                <p>Taux de scolarisation</p>
+            </div>
+            <div class="stat-item animate-on-scroll">
+                <i class="fas fa-hand-holding-heart icon"></i>
+                <div class="number">2+</div>
+                <p>Bénévoles engagés</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="actions" class="container animate-on-scroll">
+        <h2 class="section-heading">Nos Actions Clés</h2>
+        <div class="actions-grid">
+            <div class="action-card animate-on-scroll">
+                <img src="./img8.jpg" alt="Éducation pour les enfants">
+                <div class="action-card-content">
+                    <h3>Éducation</h3>
+                    <p>Nous offrons un accès à une éducation de qualité, des fournitures scolaires et un soutien tutoriel pour garantir un avenir meilleur.</p>
+                </div>
+            </div>
+            <div class="action-card animate-on-scroll">
+                <img src="img/OIP.webp" alt="Hébergement sûr">
+                <div class="action-card-content">
+                    <h3>Hébergement Sûr</h3>
+                    <p>Des foyers chaleureux et sécurisés où les enfants peuvent grandir, se sentir aimés et protégés.</p>
+                </div>
+            </div>
+            <div class="action-card animate-on-scroll">
+                <img src="./OIP.jpeg" alt="Accès aux soins de santé">
+                <div class="action-card-content">
+                    <h3>Santé & Nutrition</h3>
+                    <p>Accès à des soins médicaux réguliers, une alimentation équilibrée et un soutien psychologique.</p>
+                </div>
+            </div>
+            <div class="action-card animate-on-scroll">
+                <img src="./OIP (1).webp" alt="Développement personnel">
+                <div class="action-card-content">
+                    <h3>Développement Personnel</h3>
+                    <p>Programmes d'activités récréatives, sportives et artistiques pour favoriser leur épanouissement.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="help" class="animate-on-scroll">
+        <div class="container">
+            <h2 class="section-heading">Comment Vous Pouvez Aider</h2>
+            <p>Votre soutien est vital pour notre mission. Chaque geste, grand ou petit, fait une réelle différence dans la vie d'un enfant.</p>
+            <div class="help-grid">
+                <div class="help-option animate-on-scroll">
+                    <i class="fas fa-donate icon"></i>
+                    <h3>Faire un Don</h3>
+                    <p>Aidez-nous financièrement. Votre don assure l'éducation, la nourriture et les soins.</p>
+                    <a href="Don.html" class="btn">Donner Maintenant</a>
+                </div>
+                <div class="help-option animate-on-scroll">
+                    <i class="fas fa-hands-helping icon"></i>
+                    <h3>Devenir Bénévole</h3>
+                    <p>Offrez de votre temps et de vos compétences pour nos programmes et nos centres.</p>
+                    <a href="Devenir Benevola.html" class="btn">Rejoignez-nous</a>
+                </div>
+                <div class="help-option animate-on-scroll">
+                    <i class="fas fa-child icon"></i>
+                    <h3>Parrainer un Enfant</h3>
+                    <p>Créez un lien spécial et soutenez directement un enfant dans son parcours.</p>
+                    <a href="Parrainer un enfant.html" class="btn">En Savoir Plus</a>
+                </div>
+                <div class="help-option animate-on-scroll">
+                    <i class="fas fa-share-alt icon"></i>
+                    <h3>Partager notre Mission</h3>
+                    <p>Parlez de notre cause. La sensibilisation est essentielle pour atteindre plus d'enfants.</p>
+                    <a href="Partager nos missions.html" class="btn">Partager</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="container animate-on-scroll">
+        <h2 class="section-heading">Ce Qu'Ils Disent de Nous</h2>
+        <div class="testimonial-slider animate-on-scroll">
+            <div class="testimonial-item">
+                <img src="./Parent.jpg" alt="Photo de témoin 1">
+                <p>"Grâce à Jhad, ma fille a pu retourner à l'école et retrouve le sourire chaque jour. C'est une bénédiction !"</p>
+                <span>- Jeanne S.,Parents </span>
+            </div>
+            <div class="testimonial-item">
+                <img src="./Benevole.jpg" alt="Photo de témoin 2">
+                <p>"Être bénévole ici a changé ma vie. Voir l'impact direct sur ces enfants est la plus belle des récompenses."</p>
+                <span>- Israel M., Bénévole</span>
+            </div>
+            <div class="testimonial-item">
+                <img src="./Aminawebp.webp" alt="Photo de témoin 3">
+                <p>"J'ai trouvé un foyer et une famille grâce à Jhad. Je peux enfin rêver d'un futur."</p>
+                <span>- Amina B., Bénéficiaire</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="container animate-on-scroll">
+        <h2 class="section-heading">Nous Contacter</h2>
+        <p style="text-align: center;">Vous avez des questions, des suggestions, ou vous souhaitez en savoir plus ? N'hésitez pas à nous écrire.</p>
+        <form action="https://formspree.io/f/xovlwdzn" method="POST">
+            <label for="name">Nom Complet :</label>
+            <input type="text" id="name" name="Nom Complet" required>
+            
+            <label for="email">Votre Email :</label>
+            <input type="email" id="email" name="Email" required>
+            
+            <label for="subject">Sujet :</label>
+            <input type="text" id="subject" name="Sujet" required>
+            
+            <label for="message">Votre Message :</label>
+            <textarea id="message" name="Message" rows="6" required></textarea>
+            
+            <input type="hidden" name="_replyto" value="votre_email@example.com">
+            <button type="submit" class="btn">Envoyer le Message</button>
+        </form>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-col">
+                <h3>Jhad RdCongo</h3>
+                <p>Bâtir un avenir meilleur, un enfant à la fois.</p>
+                <div class="footer-social-icons">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Liens Rapides</h3>
+                <ul>
+                    <li><a href="#about">À Propos de Nous</a></li>
+                    <li><a href="#actions">Nos Programmes</a></li>
+                    <li><a href="Don.html">Faire un Don</a></li>
+                    <li><a href="#">Actualités</a></li>
+                    <li><a href="#contact">Contactez-nous</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contact</h3>
+                <p><i class="fas fa-map-marker-alt"></i>  123 Rue de karmel, Goma, RDC</p>
+                <p><i class="fas fa-phone"></i> +243 990 565 124</p>
+                <p><i class="fas fa-envelope"></i> info@jhad.org</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; <span id="currentYear"></span> Jhad. Tous droits réservés.
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript pour la navigation mobile
+        document.addEventListener('DOMContentLoaded', () => {
+            const navToggle = document.getElementById('navToggle');
+            const navLinks = document.querySelector('.nav-links');
+
+            navToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+
+            // Fermer le menu si un lien est cliqué (pour les petits écrans)
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth <= 768) {
+                        navLinks.classList.remove('active');
+                    }
+                });
+            });
+
+            // JavaScript pour l'année du copyright
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+            // JavaScript pour l'animation au défilement (Intersection Observer API)
+            const animateElements = document.querySelectorAll('.animate-on-scroll');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1 // L'élément devient visible quand 10% de sa surface est dans le viewport
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // Arrête d'observer après l'animation
+                    }
+                });
+            }, observerOptions);
+
+            animateElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+
+</body>
+</html>

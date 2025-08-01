@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faire un Don - Enfants d'Espoir</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* Variables CSS */
+        :root {
+            --primary-color: #4CAF50; /* Vert espérance */
+            --secondary-color: #FFC107; /* Jaune chaleur */
+            --dark-bg: #2C3E50; /* Bleu nuit pour fond */
+            --light-text: #ECF0F1; /* Texte clair */
+            --dark-text: #34495E; /* Texte sombre */
+            --light-bg: #F8F9FA; /* Fond clair */
+            --card-bg: #FFFFFF; /* Fond des cartes */
+            --animation-speed: 0.5s;
+        }
+
+        /* Styles Généraux */
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark-bg);
+            margin-bottom: 1rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: color var(--animation-speed) ease;
+        }
+
+        a:hover {
+            color: var(--secondary-color);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            transition: background-color var(--animation-speed) ease, transform 0.3s ease;
+            font-weight: 600;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            color: #fff;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-heading::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-on-load {
+            animation: fadeIn 1.2s ease-out forwards;
+            opacity: 0; /* Caché initialement */
+        }
+
+        /* Header */
+        .header {
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--light-text);
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--light-text);
+            font-weight: 600;
+            transition: color var(--animation-speed) ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .don-hero {
+            position: relative;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            overflow: hidden;
+            background: url('images/don-hero.jpg') no-repeat center center/cover; /* Votre image d'en-tête */
+            animation: zoomInOut 20s infinite alternate; /* Animation de l'image de fond */
+        }
+        @keyframes zoomInOut {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05); }
+        }
+        .don-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Overlay sombre */
+            z-index: 1;
+        }
+        .don-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 1rem;
+            animation: fadeIn 1.5s ease-out;
+        }
+        .don-hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+        .don-hero-content p {
+            font-size: 1.2rem;
+            color: var(--light-text);
+        }
+
+        /* Impact Section */
+        #impact {
+            padding: 4rem 0;
+            background-color: var(--card-bg);
+            text-align: center;
+        }
+        #impact .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+        .impact-item {
+            background-color: var(--light-bg);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .impact-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .impact-item .icon {
+            font-size: 3.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            animation: pulse 2s infinite ease-in-out; /* Animation d'icône */
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .impact-item h3 {
+            font-size: 1.8rem;
+            color: var(--dark-bg);
+            margin-bottom: 0.8rem;
+        }
+        .impact-item p {
+            font-size: 1rem;
+            color: var(--dark-text);
+        }
+
+        /* Donation Options Section */
+        #donation-options {
+            padding: 4rem 0;
+            background-color: var(--light-bg);
+            text-align: center;
+        }
+        .donation-amounts {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .amount-btn {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 1.2rem 2.5rem;
+            border-radius: 8px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            border: 2px solid transparent;
+        }
+        .amount-btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+        }
+        .amount-btn.selected {
+            background-color: var(--secondary-color);
+            border: 2px solid var(--primary-color);
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+
+        .custom-amount-input {
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            width: 200px;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .donation-frequency {
+            margin-top: 3rem;
+            margin-bottom: 3rem;
+        }
+        .frequency-option {
+            display: inline-block;
+            background-color: #eee;
+            color: var(--dark-text);
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .frequency-option.selected {
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+        .frequency-option:hover {
+            background-color: var(--secondary-color);
+            color: #fff;
+        }
+
+        /* Payment Methods */
+        #payment-methods {
+            padding: 4rem 0;
+            background-color: var(--card-bg);
+            text-align: center;
+        }
+        .payment-options-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .payment-option {
+            background-color: var(--light-bg);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            width: 300px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .payment-option:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .payment-option img {
+            max-width: 120px;
+            height: auto;
+            margin-bottom: 1rem;
+        }
+        .payment-option h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;
+        }
+        .payment-option p {
+            font-size: 0.95rem;
+            color: var(--dark-text);
+            margin-bottom: 1rem;
+        }
+        .payment-option .copy-btn {
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            padding: 0.6rem 1.2rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .payment-option .copy-btn:hover {
+            background-color: var(--primary-color);
+        }
+
+        /* Contact Form */
+        #donation-form {
+            padding: 4rem 0;
+            background-color: var(--light-bg);
+        }
+        #donation-form h2 {
+            text-align: center;
+        }
+        #donation-form form {
+            max-width: 700px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            background-color: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        #donation-form form label {
+            font-weight: 600;
+            color: var(--dark-text);
+        }
+        #donation-form form input[type="text"],
+        #donation-form form input[type="email"],
+        #donation-form form textarea {
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        #donation-form form textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        #donation-form form .btn {
+            align-self: center; /* Centrer le bouton du formulaire */
+            margin-top: 1.5rem;
+            width: fit-content;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-col {
+            flex: 1;
+            min-width: 250px;
+            text-align: left;
+        }
+
+        .footer-col h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .footer-col p, .footer-col ul {
+            font-size: 0.95rem;
+            color: #ccc;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .footer-col ul li {
+            margin-bottom: 0.5rem;
+        }
+        .footer-col a {
+            color: #ccc;
+        }
+        .footer-col a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-social-icons {
+            margin-top: 1rem;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+        .footer-social-icons a {
+            font-size: 1.5rem;
+            color: var(--light-text);
+        }
+        .footer-social-icons a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-bottom {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.85rem;
+            color: #aaa;
+        }
+
+        /* Media Queries pour la Responsivité */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0 1.5rem;
+            }
+            .nav-links li {
+                margin-left: 1rem;
+            }
+            .logo {
+                font-size: 1.5rem;
+            }
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            .hero-content p {
+                font-size: 1rem;
+            }
+            .section-heading {
+                font-size: 2rem;
+            }
+            .impact-grid, .payment-options-grid {
+                grid-template-columns: 1fr;
+            }
+            .donation-amounts {
+                flex-direction: column;
+                align-items: center;
+            }
+            .amount-btn {
+                width: 80%;
+                max-width: 300px;
+            }
+            .frequency-option {
+                margin: 0.5rem 0.3rem;
+            }
+            .footer-content {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .footer-col {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <nav class="navbar container">
+            <a href="index.html" class="logo">
+                <img src="./JHAD .jpg" alt="Logo Jhad">
+                Jhad
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html#about">À Propos</a></li>
+                <li><a href="index.html#actions">Nos Actions</a></li>
+                <li><a href="index.html#testimonials">Témoignages</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="#" class="btn" style="background-color: var(--secondary-color); color: var(--dark-bg);">Faire un Don</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="don-hero animate-on-load">
+        <div class="don-hero-content">
+            <h1>Votre Don Transforme des Vies</h1>
+            <p>Chaque contribution offre aux enfants orphelins espoir, protection, éducation et un avenir meilleur.</p>
+        </div>
+    </section>
+
+    <section id="impact" class="container animate-on-load">
+        <h2 class="section-heading">L'Impact de Votre Générosité</h2>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem;">Votre don n'est pas qu'une somme d'argent ; c'est une porte ouverte vers un futur rempli de possibilités pour des enfants dans le besoin.</p>
+        <div class="impact-grid">
+            <div class="impact-item">
+                <i class="fas fa-book-open icon"></i>
+                <h3>Éducation</h3>
+                <p>Un don de 50 USD peut couvrir les fournitures scolaires d'un enfant pour une année.</p>
+            </div>
+            <div class="impact-item">
+                <i class="fas fa-utensils icon"></i>
+                <h3>Nutrition</h3>
+                <p>Avec 25 USD, vous offrez des repas équilibrés à un enfant pendant une semaine.</p>
+            </div>
+            <div class="impact-item">
+                <i class="fas fa-heartbeat icon"></i>
+                <h3>Santé</h3>
+                <p>Un soutien de 75 USD permet l'accès aux soins médicaux essentiels pour un enfant.</p>
+            </div>
+            <div class="impact-item">
+                <i class="fas fa-home icon"></i>
+                <h3>Hébergement</h3>
+                <p>Avec 100 USD, vous contribuez au logement sûr et confortable d'un enfant pour un mois.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="donation-options" class="container animate-on-load">
+        <h2 class="section-heading">Choisissez Votre Montant</h2>
+        <p>Sélectionnez un montant prédéfini ou entrez le montant de votre choix.</p>
+        <div class="donation-amounts">
+            <div class="amount-btn" data-amount="25">25 USD</div>
+            <div class="amount-btn" data-amount="50">50 USD</div>
+            <div class="amount-btn" data-amount="100">100 USD</div>
+            <div class="amount-btn" data-amount="250">250 USD</div>
+        </div>
+        <input type="number" id="customAmount" class="custom-amount-input" placeholder="Autre montant (USD)" min="1">
+
+        <div class="donation-frequency">
+            <h3>Fréquence du Don</h3>
+            <div class="frequency-options">
+                <span class="frequency-option selected" data-frequency="once">Don Unique</span>
+                <span class="frequency-option" data-frequency="monthly">Mensuel</span>
+                <span class="frequency-option" data-frequency="yearly">Annuel</span>
+            </div>
+        </div>
+        <p style="font-size: 1.1rem; font-weight: 600;">Montant sélectionné : <span id="selectedAmount">0</span> USD (<span id="selectedFrequency">Unique</span>)</p>
+    </section>
+
+    <section id="payment-methods" class="container animate-on-load">
+        <h2 class="section-heading">Méthodes de Paiement</h2>
+        <p>Veuillez utiliser l'une des méthodes de paiement ci-dessous.</p>
+        <div class="payment-options-grid">
+            <div class="payment-option">
+                <img src="./Logo airtel.png" alt="Logo Airtel Money">
+                <h3>Airtel Money</h3>
+                <p style="font-size: 1.2rem; font-weight: 700; color: #f7a01d;">+243 998 591 642</p>
+                <p>Nom du compte : **Divin Bénédiction**</p>
+                <button class="copy-btn" data-text="+243998591642">Copier le numéro</button>
+            </div>
+            <div class="payment-option">
+                <img src="./Logo orange.png" alt="Logo Orange Money">
+                <h3>Orange Money</h3>
+                <p style="font-size: 1.2rem; font-weight: 700; color: #f7a01d;">+243 897 456 123</p>
+                <p>Nom du compte : **Divin Bénédiction**</p>
+                <button class="copy-btn" data-text="+243897456123">Copier le numéro</button>
+            </div>
+            <div class="payment-option">
+                <i class="fas fa-university icon" style="font-size: 3.5rem; color: var(--primary-color);"></i>
+                <h3>Virement Bancaire</h3>
+                <p>Contactez-nous pour les détails du compte bancaire.</p>
+                <a href="index.html#contact" class="btn copy-btn" style="background-color: var(--primary-color); color: #fff;">Nous Contacter</a>
+            </div>
+        </div>
+        <p style="margin-top: 3rem; font-size: 0.9rem; color: #666;">
+            Important : Après avoir effectué votre don via Mobile Money, veuillez remplir le formulaire ci-dessous pour nous permettre de suivre et de vous envoyer un reçu.
+        </p>
+    </section>
+
+    <section id="donation-form" class="container animate-on-load">
+        <h2 class="section-heading">Confirmez Votre Don</h2>
+        <p style="text-align: center; max-width: 600px; margin: 0 auto 1.5rem;">Veuillez remplir ce formulaire rapide après votre transfert pour nous aider à le suivre et à vous remercier personnellement.</p>
+        <form action="https://formspree.io/f/xovlwdzn" method="POST">
+            <label for="donateur-name">Votre Nom Complet :</label>
+            <input type="text" id="donateur-name" name="Nom du Donateur" required>
+            
+            <label for="donateur-email">Votre Email (pour le reçu) :</label>
+            <input type="email" id="donateur-email" name="Email du Donateur" required>
+
+            <label for="montant-confirme">Montant Donné (USD) :</label>
+            <input type="text" id="montant-confirme" name="Montant Donné" readonly required>
+            
+            <label for="frequence-confirme">Fréquence du Don :</label>
+            <input type="text" id="frequence-confirme" name="Fréquence du Don" readonly required>
+
+            <label for="methode-paiement">Méthode de Paiement :</label>
+            <input type="text" id="methode-paiement" name="Méthode de Paiement" value="Mobile Money (Airtel/Orange)" readonly>
+            
+            <label for="numero-transfert">Numéro utilisé pour le transfert :</label>
+            <input type="text" id="numero-transfert" name="Numéro de Transfert" placeholder="+243 998 591 642">
+
+            <label for="commentaire">Message / Commentaire (optionnel) :</label>
+            <textarea id="commentaire" name="Commentaire" rows="4"></textarea>
+            
+            <input type="hidden" name="_replyto" value="votre_email@example.com">
+            <button type="submit" class="btn">Confirmer Mon Don</button>
+        </form>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-col">
+                <h3>Jhad RdCongo</h3>
+                <p>Bâtir un avenir meilleur, un enfant à la fois.</p>
+                <div class="footer-social-icons">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Liens Rapides</h3>
+                <ul>
+                    <li><a href="index.html#about">À Propos de Nous</a></li>
+                    <li><a href="index.html#actions">Nos Programmes</a></li>
+                    <li><a href="#">Actualités</a></li>
+                    <li><a href="index.html#contact">Contactez-nous</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contact</h3>
+                <p><i class="fas fa-map-marker-alt"></i>  123 Rue de karmel, Goma, RDC</p>
+                <p><i class="fas fa-phone"></i> +243 990 565 124</p>
+                <p><i class="fas fa-envelope"></i> info@jhad.org</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; <span id="currentYear"></span> jhad. Tous droits réservés.
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mise à jour de l'année dans le pied de page
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+            // Gestion des montants de don
+            const amountButtons = document.querySelectorAll('.amount-btn');
+            const customAmountInput = document.getElementById('customAmount');
+            const selectedAmountSpan = document.getElementById('selectedAmount');
+            const confirmedAmountInput = document.getElementById('montant-confirme');
+
+            let currentSelectedAmount = 0;
+
+            amountButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Désélectionner tous les boutons
+                    amountButtons.forEach(btn => btn.classList.remove('selected'));
+                    // Sélectionner le bouton cliqué
+                    button.classList.add('selected');
+                    // Mettre à jour le montant sélectionné
+                    currentSelectedAmount = parseFloat(button.dataset.amount);
+                    selectedAmountSpan.textContent = currentSelectedAmount;
+                    customAmountInput.value = ''; // Effacer le champ personnalisé
+                    confirmedAmountInput.value = currentSelectedAmount + ' USD';
+                });
+            });
+
+            customAmountInput.addEventListener('input', () => {
+                // Désélectionner tous les boutons si l'utilisateur tape un montant personnalisé
+                amountButtons.forEach(btn => btn.classList.remove('selected'));
+                currentSelectedAmount = parseFloat(customAmountInput.value) || 0;
+                selectedAmountSpan.textContent = currentSelectedAmount;
+                confirmedAmountInput.value = currentSelectedAmount > 0 ? currentSelectedAmount + ' USD' : '';
+            });
+
+            // Initialiser le montant sélectionné au chargement si un bouton est déjà "selected" par défaut (facultatif)
+            const defaultSelectedBtn = document.querySelector('.amount-btn.selected');
+            if (defaultSelectedBtn) {
+                currentSelectedAmount = parseFloat(defaultSelectedBtn.dataset.amount);
+                selectedAmountSpan.textContent = currentSelectedAmount;
+                confirmedAmountInput.value = currentSelectedAmount + ' USD';
+            }
+
+
+            // Gestion de la fréquence de don
+            const frequencyOptions = document.querySelectorAll('.frequency-option');
+            const selectedFrequencySpan = document.getElementById('selectedFrequency');
+            const confirmedFrequencyInput = document.getElementById('frequence-confirme');
+
+            frequencyOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    frequencyOptions.forEach(opt => opt.classList.remove('selected'));
+                    option.classList.add('selected');
+                    selectedFrequencySpan.textContent = option.textContent;
+                    confirmedFrequencyInput.value = option.textContent;
+                });
+            });
+            // Initialiser la fréquence sélectionnée
+            const defaultFrequency = document.querySelector('.frequency-option.selected');
+            if (defaultFrequency) {
+                selectedFrequencySpan.textContent = defaultFrequency.textContent;
+                confirmedFrequencyInput.value = defaultFrequency.textContent;
+            }
+
+            // Copier le numéro de téléphone
+            document.querySelectorAll('.copy-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    const textToCopy = button.dataset.text;
+                    if (textToCopy) {
+                        navigator.clipboard.writeText(textToCopy).then(() => {
+                            const originalText = button.textContent;
+                            button.textContent = 'Copié !';
+                            setTimeout(() => {
+                                button.textContent = originalText;
+                            }, 1500); // Rétablir le texte après 1.5 secondes
+                        }).catch(err => {
+                            console.error('Erreur lors de la copie: ', err);
+                            alert('La copie a échoué. Veuillez copier le numéro manuellement: ' + textToCopy);
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

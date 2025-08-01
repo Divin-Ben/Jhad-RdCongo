@@ -165,6 +165,14 @@
             color: var(--primary-color);
         }
 
+        /* Burger Menu - Ajouté */
+        .burger-menu {
+            display: none; /* Caché sur les grands écrans */
+            cursor: pointer;
+            font-size: 2rem;
+            color: var(--light-text);
+        }
+
         /* Hero Section */
         .parrainer-hero {
             position: relative;
@@ -537,9 +545,44 @@
             .navbar {
                 padding: 0 1.5rem;
             }
-            .nav-links li {
-                margin-left: 1rem;
+            
+            /* Navbar pour mobile */
+            .nav-links {
+                display: none; /* Cacher le menu sur mobile par défaut */
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--dark-bg);
+                box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+                padding: 1rem 0;
             }
+            .nav-links.active {
+                display: flex; /* Afficher le menu quand la classe est active */
+            }
+            .nav-links li {
+                margin: 0;
+                text-align: center;
+                padding: 0.8rem 0;
+            }
+            .nav-links a {
+                color: var(--light-text);
+                display: block;
+                padding: 0.5rem;
+            }
+            .nav-links a.btn {
+                background-color: var(--secondary-color);
+                color: var(--dark-bg);
+                margin: 1rem auto 0.5rem;
+                width: fit-content;
+                padding: 0.6rem 1.2rem;
+            }
+            
+            .burger-menu {
+                display: block; /* Afficher le burger menu sur mobile */
+            }
+
             .logo {
                 font-size: 1.5rem;
             }
@@ -574,7 +617,10 @@
                 <img src="./JHAD .jpg" alt="Logo jhad">
                 Jhad
             </a>
-            <ul class="nav-links">
+            <div class="burger-menu" id="burger-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links" id="nav-links">
                 <li><a href="index.html#about">À Propos</a></li>
                 <li><a href="index.html#actions">Nos Actions</a></li>
                 <li><a href="Don.html">Faire un Don</a></li>
@@ -776,7 +822,7 @@
             </div>
             <div class="footer-col">
                 <h3>Contact</h3>
-                <p><i class="fas fa-map-marker-alt"></i>  123 Rue de karmel, Goma, RDC</p>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Rue de karmel, Goma, RDC</p>
                 <p><i class="fas fa-phone"></i> +243 990 565 124</p>
                 <p><i class="fas fa-envelope"></i> info@jhad.org</p>
             </div>
@@ -802,6 +848,23 @@
                     // Faire défiler vers le formulaire de parrainage
                     document.getElementById('sponsorship-form-section').scrollIntoView({ behavior: 'smooth' });
                     childSelectionInput.focus(); // Mettre le focus sur le champ après défilement
+                });
+            });
+
+            // Gérer le menu burger pour la responsivité
+            const burgerMenu = document.getElementById('burger-menu');
+            const navLinks = document.getElementById('nav-links');
+
+            burgerMenu.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+
+            // Fermer le menu si un lien est cliqué
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                    }
                 });
             });
         });

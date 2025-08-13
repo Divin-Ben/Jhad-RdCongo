@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jeune Humanitaire en Action pour le Developpement - Chaque enfant, un avenir</title>
+    <title>Jhad - Chaque enfant, un avenir</title>
     <link rel="icon" type="image/x-icon" href="./JHAD .jpg">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
-        /* Variables CSS */
         :root {
             --primary-color: #4CAF50; /* Vert espérance */
             --secondary-color: #FFC107; /* Jaune chaleur */
@@ -20,8 +19,6 @@
             --card-bg: #FFFFFF; /* Fond des cartes */
             --animation-speed: 0.5s;
         }
-
-        /* Styles Généraux */
         body {
             font-family: 'Open Sans', sans-serif;
             margin: 0;
@@ -30,7 +27,7 @@
             background-color: var(--light-bg);
             color: var(--dark-text);
             line-height: 1.6;
-            overflow-x: hidden; /* Empêche le défilement horizontal inattendu */
+            overflow-x: hidden; 
         }
 
         h1, h2, h3 {
@@ -91,8 +88,6 @@
             background-color: var(--primary-color);
             border-radius: 2px;
         }
-
-        /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -108,8 +103,6 @@
             opacity: 1;
             transform: translateY(0);
         }
-
-        /* Header */
         .header {
             background-color: var(--dark-bg);
             color: var(--light-text);
@@ -171,8 +164,6 @@
             cursor: pointer;
             color: var(--light-text);
         }
-
-        /* Hero Section */
         .hero {
             position: relative;
             height: 100vh;
@@ -182,9 +173,8 @@
             text-align: center;
             color: #fff;
             overflow: hidden;
-            margin-top: 60px; /* Espace pour le header fixe */
+            margin-top: 60px; 
         }
-
         .hero::before {
             content: '';
             position: absolute;
@@ -192,7 +182,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.6); /* Overlay sombre */
+            background: rgba(0, 0, 0, 0.6); 
             z-index: 1;
         }
 
@@ -202,8 +192,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('images/hero-bg.jpg') no-repeat center center/cover; /* Remplacez par votre image */
-            animation: zoomInOut 30s infinite alternate; /* Animation de l'image de fond */
+            background: url('images/hero-bg.jpg') no-repeat center center/cover; 
+            animation: zoomInOut 30s infinite alternate; 
             z-index: 0;
         }
 
@@ -230,8 +220,6 @@
             margin-bottom: 2rem;
             color: var(--light-text);
         }
-
-        /* About Section */
         #about {
             background-color: var(--card-bg);
             padding: 4rem 0;
@@ -276,9 +264,6 @@
             color: var(--dark-text);
             margin: 0;
         }
-
-
-        /* Our Actions Section */
         #actions {
             padding: 4rem 0;
             background-color: var(--light-bg);
@@ -313,7 +298,7 @@
             transition: filter 0.5s ease;
         }
         .action-card:hover img {
-            filter: grayscale(0%); /* Enlève le filtre si vous l'aviez mis en gris par défaut */
+            filter: grayscale(0%);
         }
 
         .action-card-content {
@@ -331,8 +316,6 @@
             font-size: 1rem;
             color: var(--dark-text);
         }
-
-        /* How to Help Section */
         #help {
             padding: 4rem 0;
             background-color: var(--dark-bg);
@@ -354,7 +337,7 @@
         }
 
         .help-option {
-            background-color: var(--dark-text); /* Fond plus sombre pour les options */
+            background-color: var(--dark-text);
             padding: 2rem;
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
@@ -369,7 +352,7 @@
             font-size: 3.5rem;
             color: var(--secondary-color);
             margin-bottom: 1rem;
-            animation: bounce 2s infinite ease-in-out; /* Animation d'icône */
+            animation: bounce 2s infinite ease-in-out;
         }
 
         @keyframes bounce {
@@ -404,23 +387,20 @@
             background-color: var(--primary-color);
             color: #fff;
         }
-
-        /* Testimonials Section */
         #testimonials {
             padding: 4rem 0;
             background-color: var(--card-bg);
         }
-
         .testimonial-slider {
             display: flex;
-            overflow-x: auto; /* Permet le défilement si trop de témoignages */
+            overflow-x: auto; 
             scroll-snap-type: x mandatory;
             -webkit-overflow-scrolling: touch;
             gap: 2rem;
-            padding-bottom: 1rem; /* Pour la barre de défilement */
+            padding-bottom: 1rem; 
         }
         .testimonial-item {
-            flex: 0 0 450px; /* Taille fixe pour chaque témoignage */
+            flex: 0 0 450px;
             scroll-snap-align: start;
             background-color: var(--light-bg);
             padding: 2rem;
@@ -448,8 +428,6 @@
             font-weight: 600;
             color: var(--primary-color);
         }
-
-        /* Contact Section */
         #contact {
             padding: 4rem 0;
             background-color: var(--light-bg);
@@ -479,7 +457,7 @@
             border-radius: 5px;
             font-size: 1rem;
             width: 100%;
-            box-sizing: border-box; /* Inclure le padding dans la largeur */
+            box-sizing: border-box; 
         }
 
         #contact form textarea {
@@ -488,10 +466,8 @@
         }
 
         #contact form .btn {
-            align-self: flex-start; /* Alignement à gauche pour le bouton */
+            align-self: flex-start; 
         }
-
-        /* Footer */
         .footer {
             background-color: var(--dark-bg);
             color: var(--light-text);
@@ -540,7 +516,7 @@
             margin-top: 1rem;
             display: flex;
             gap: 1rem;
-            justify-content: center; /* Centrer les icônes si la colonne est petite */
+            justify-content: center; 
         }
         .footer-social-icons a {
             font-size: 1.5rem;
@@ -557,8 +533,6 @@
             font-size: 0.85rem;
             color: #aaa;
         }
-
-        /* Media Queries pour la Responsivité */
         @media (max-width: 768px) {
             .navbar {
                 flex-wrap: wrap;
@@ -616,8 +590,8 @@
             }
 
             .testimonial-item {
-                flex: 0 0 90%; /* Ajuste la largeur pour le défilement mobile */
-                margin: 0 auto; /* Centre les témoignages si nécessaire */
+                flex: 0 0 90%; 
+                margin: 0 auto; 
             }
 
             .footer-content {
@@ -639,10 +613,9 @@
     <header class="header">
         <nav class="navbar container">
             <a href="#" class="logo">
-                <img src="./JHAD .jpg" alt="Logo Jhad">
-                Jhad
+                JHAD
             </a>
-            <ul class="nav-links">
+            <ul class="nav-links"> 
                 <li><a href="#about">À Propos</a></li>
                 <li><a href="#actions">Nos Actions</a></li>
                 <li><a href="#help">Comment Aider</a></li>
@@ -664,9 +637,27 @@
     </section>
 
     <section id="about" class="container animate-on-scroll">
+           <h2 class="section-heading">Création et dénomination </h2>
+        <p>Conformément à la Loi n°004/2001 du 20 juillet 2001 relative aux associations sans but lucratif et aux établissements d’utilité publique en République Démocratique du Congo, il a été créé, le 29 septembre 2021, une organisation non gouvernementale sans but lucratif dénommée « JEUNES HUMANITAIRES EN ACTION POUR LE DÉVELOPPEMENT » (JHAD ONG-D).</p>
+        <h2 class="section-heading">Objectif global </h2>
+        <p>JHAD ONG-D s’inscrit dans les objectifs du développement durable en œuvrant à l’amélioration des conditions socio-économiques des bénéficiaires de ses actions.</p>
         <h2 class="section-heading">Notre Mission</h2>
-        <p>Les JEUNES HUMANITAIRES EN ACTION POUR LE DÉVELOPPEMENT J.H.A.D est une ONG apolitique de droit congolais créée en septembre 2021 par des jeunes volontaires. Notre objectif est d’intervenir dans les programmes multisectoriels pour venir en aide aux plus oubliés.</p>
+        <p>Les Jeunes Humanitaires en Action pour le Developpement JHAD sont une ONG apolitique de droit congolais créée en septembre 2021 par des jeunes volontaires. Notre objectif est d’intervenir dans les programmes multisectoriels pour venir en aide aux plus oubliés.</p>
         <p>Depuis 2021, nous travaillons sans relâche pour fournir un soutien essentiel, des foyers aimants et des programmes éducatifs pour bâtir un avenir meilleur pour les générations futures.</p>
+        <p>Nous travaillons activement dans les secteurs suivants :  
+           Relèvement communautaire, 
+           Protection de l’enfant,
+           Agriculture, 
+           Violences basées sur le genre,
+           Éducation, 
+           Santé, 
+           Protection (abri), 
+           Résolution des conflits (cohabitation pacifique),
+           Construction, réhabilitation et modernisation des infrastructures communautaires,</p>
+        <h2 class="section-heading">Notre Vision</h2>
+        <p>Le JHAD vise le développement par l’auto prise en charge des communautés dont les tissus socio-économiques ont été brisés par les affres de la guerre et autres catastrophes naturelles.</p>
+    
+         
         <div class="stats-grid">
             <div class="stat-item animate-on-scroll">
                 <i class="fas fa-users icon"></i>
@@ -680,12 +671,12 @@
             </div>
             <div class="stat-item animate-on-scroll">
                 <i class="fas fa-graduation-cap icon"></i>
-                <div class="number">95%</div>
+                <div class="number">75%</div>
                 <p>Taux de scolarisation</p>
             </div>
             <div class="stat-item animate-on-scroll">
                 <i class="fas fa-hand-holding-heart icon"></i>
-                <div class="number">14+</div>
+                <div class="number">2+</div>
                 <p>Bénévoles engagés</p>
             </div>
         </div>
@@ -702,7 +693,7 @@
                 </div>
             </div>
             <div class="action-card animate-on-scroll">
-                <img src="./OIP.webp" alt="Hébergement sûr">
+                <img src="img/OIP.webp" alt="Hébergement sûr">
                 <div class="action-card-content">
                     <h3>Hébergement Sûr</h3>
                     <p>Des foyers chaleureux et sécurisés où les enfants peuvent grandir, se sentir aimés et protégés.</p>
@@ -806,10 +797,9 @@
                 <h3>Jhad RdCongo</h3>
                 <p>Bâtir un avenir meilleur, un enfant à la fois.</p>
                 <div class="footer-social-icons">
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.facebook.com/JHAD Officiel" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                   <a href="https://www.tiktok.com/JHAD Officiel"><i class="fab fa-tiktok"></i></a>
+                   <a href="https://www.instagram.com"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
             <div class="footer-col">
@@ -824,9 +814,9 @@
             </div>
             <div class="footer-col">
                 <h3>Contact</h3>
-                <p><i class="fas fa-map-marker-alt"></i>  123 Rue de karmel, Goma, RDC</p>
-                <p><i class="fas fa-phone"></i> +243 990 565 124</p>
-                <p><i class="fas fa-envelope"></i> info@jhad.org</p>
+                <p><i class="fas fa-map-marker-alt"></i>  123 Rue de Carmel, Goma, RDC</p>
+                <p><i class="fas fa-phone"></i> +243 989 862 176</p>
+                <p><i class="fas fa-envelope"></i> https://jhad-rdcongo.pages.dev/</p>
             </div>
         </div>
         <div class="footer-bottom">
@@ -882,5 +872,3 @@
 
 </body>
 </html>
-
-
